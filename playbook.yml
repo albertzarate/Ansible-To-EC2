@@ -1,0 +1,21 @@
+--- #aws ec2 instance simple https web page using Apache2
+- hosts: aws
+  remote_user: ubuntu
+  become_method: sudo
+  vars:
+    http_port: 80
+  gather_facts: yes
+  connection: ssh
+  sudo: yes
+  tasks:
+  - name: sudo apt-get update
+    apt: update_cache=yes
+  - name: cp index.html /var/www/html/index.html
+    template: src=index.html dest=/var/www/html/index.html
+  - name: install apache2
+    apt: name=apache2 state=present
+  - name: restart apache2
+    service: name=apache2 state=restarted
+  # - name: stop apache2
+    # service: name=apache2 state=stopped
+...
