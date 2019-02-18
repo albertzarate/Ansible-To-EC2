@@ -16,6 +16,6 @@
     apt: name=apache2 state=present
   - name: restart apache2
     service: name=apache2 state=restarted
-  # - name: stop apache2
+  # - name: stop apache2 # Commented out so that server runs after running playbook
     # service: name=apache2 state=stopped
 ...
